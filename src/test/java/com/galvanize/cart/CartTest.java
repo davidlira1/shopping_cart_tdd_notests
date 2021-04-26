@@ -63,6 +63,19 @@ public class CartTest {
     }
 
     @Test
+    public void getTotalPrice_noItems() {
+        //SETUP
+        Cart cart = new Cart();
+        double expected = 0;
+
+        //EXECUTION
+        double actual = cart.getTotalPrice();
+
+        //ASSERT
+        assertEquals(expected, actual, "Expect total price to be 0 when there are no items in shopping cart.");
+    }
+
+    @Test
     public void createGetTotalPrice() {
         //SETUP
         Cart cart = new Cart();
@@ -77,18 +90,23 @@ public class CartTest {
         assertEquals(expected, actual, "Grabs total price of items in cart");
     }
 
+
     @Test
-    public void getTotalPrice_noItems() {
+    public void itemizedList() {
         //SETUP
         Cart cart = new Cart();
-        double expected = 0;
+        Item item = new Item(3.75);
+        cart.shoppingCart.add(item);
+        ArrayList<Item> expected = new ArrayList<Item>();
+        expected.add(item);
 
         //EXECUTION
-        double actual = cart.getTotalPrice();
+        ArrayList<Item> actual = cart.itemizedList();
 
         //ASSERT
-        assertEquals(expected, actual, "Expect total price to be 0 when there are no items in shopping cart.");
+        assertEquals(expected, actual, "Returns an itemized list with their name and price");
     }
+
 
 
 }
