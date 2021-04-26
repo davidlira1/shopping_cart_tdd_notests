@@ -61,4 +61,20 @@ public class CartTest {
         //ASSERT
         assertEquals(expected, actual, "item is initialized with price");
     }
+
+    @Test
+    public void createGetTotalPrice() {
+        //SETUP
+        Cart cart = new Cart();
+        Item item = new Item(5.25);
+        cart.shoppingCart.add(item);
+        double expected = 5.25;
+
+        //EXECUTION
+        double actual = cart.getTotalPrice();
+
+        //ASSERT
+        assertEquals(expected, actual, "Grabs total price of items in cart");
+    }
+
 }
