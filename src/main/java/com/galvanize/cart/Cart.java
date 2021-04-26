@@ -23,4 +23,9 @@ public class Cart {
     public ArrayList<Item> itemizedList() {
         return shoppingCart;
     }
+
+    public int itemQuantities() {
+        return shoppingCart.size();
+    }
+
 }
