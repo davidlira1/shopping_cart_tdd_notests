@@ -65,7 +65,7 @@ public class CartTest {
     @Test
     public void createAnItem_initializedWithPrice() {
         //SETUP
-        Item item = new Item(5.25);
+        Item item = new Item("oranges", 5.25);
         double expected = 5.25;
 
         //EXECUTION
@@ -92,7 +92,7 @@ public class CartTest {
     public void createGetTotalPrice() {
         //SETUP
         Cart cart = new Cart();
-        Item item = new Item(5.25);
+        Item item = new Item("oranges",5.25);
         cart.shoppingCart.add(item);
         double expected = 5.25;
 
@@ -108,7 +108,7 @@ public class CartTest {
     public void itemizedList() {
         //SETUP
         Cart cart = new Cart();
-        Item item = new Item(3.75);
+        Item item = new Item("oranges",3.75);
         cart.shoppingCart.add(item);
         ArrayList<Item> expected = new ArrayList<Item>();
         expected.add(item);
@@ -120,6 +120,25 @@ public class CartTest {
         assertEquals(expected, actual, "Returns an itemized list with their name and price");
     }
 
+    @Test
+    public void getTotalPrice_multipleItems() {
+        //SETUP
+        Cart cart = new Cart();
+        Item item1 = new Item("oranges", 3.25);
+        Item item2 = new Item("apples", 6.24);
+        cart.shoppingCart.add(item1);
+        cart.shoppingCart.add(item2);
+        String totalPrice = "9.49";
+        String quantity = "2";
+        String expected = totalPrice + " " + quantity;
+
+        //EXECUTION
+        String actual = cart.getTotalPrice();
+
+        //ASSERT
+        assertEquals(expected, actual, "GetTotalPrice reflects both item price and quantity");
+
+    }
 
 
 }
