@@ -169,6 +169,23 @@ public class CartTest {
         assertEquals(expected, actual, "itemQuantities() returns quantity of items in shopping cart");
     }
 
+    @Test
+    public void onSaleItems_noItems() {
+        //setup
+        Cart cart = new Cart();
+        Item item1 = new Item("oranges", 3.25, false);
+        Item item2 = new Item("apples", 6.24, false);
+        cart.shoppingCart.add(item1);
+        cart.shoppingCart.add(item2);
+        int expected = 0;
+
+        //execution
+        int actual = cart.onSaleItems();
+
+        //assert
+        assertEquals(expected, actual, "Expect number of sale items to be zero when there are no sale items");
+    }
+
 
 
 }
