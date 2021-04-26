@@ -48,6 +48,19 @@ public class CartTest {
 //        //ASSERT
 //        assertTrue(actual, "field of price for item exists");
 //    }
+    @Test
+    public void createAnItem_initializedWithName() {
+        //SETUP
+        Item item = new Item("oranges", 5.25);
+        String expected = "oranges";
+
+        //EXECUTION
+        String actual = item.getName();
+
+        //ASSERT
+        assertEquals(expected, actual, "item is initialized with name");
+    }
+
 
     @Test
     public void createAnItem_initializedWithPrice() {

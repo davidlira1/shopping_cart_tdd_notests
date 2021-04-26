@@ -19,4 +19,8 @@ public class Cart {
 
         return totalPrice;
     }
+
+    public ArrayList<Item> itemizedList() {
+        return shoppingCart;
+    }
 }
