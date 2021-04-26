@@ -77,4 +77,18 @@ public class CartTest {
         assertEquals(expected, actual, "Grabs total price of items in cart");
     }
 
+    @Test
+    public void getTotalPrice_noItems() {
+        //SETUP
+        Cart cart = new Cart();
+        double expected = 0;
+
+        //EXECUTION
+        double actual = cart.getTotalPrice();
+
+        //ASSERT
+        assertEquals(expected, actual, "Expect total price to be 0 when there are no items in shopping cart.");
+    }
+
+
 }
