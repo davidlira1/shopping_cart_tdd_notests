@@ -7,9 +7,23 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CartTest {
+
+    @Test
+    public void createAShoppingCart_doesShoppingCartExist() {
+        //SETUP
+        Cart cart = new Cart();
+        ArrayList<Item> expected = new ArrayList<Item>();
+
+        //EXECUTION
+        ArrayList<Item> actual = cart.shoppingCart;
+
+        //ASSERT
+        assertEquals(actual, expected, "shopping cart exist");
+    }
 
     @Test
     public void createAShoppingCart_initializedEmpty () {
