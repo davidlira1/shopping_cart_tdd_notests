@@ -6,9 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CartTest {
 
@@ -38,4 +36,15 @@ public class CartTest {
         assertEquals(expected, actual, "Expect cart to be empty when cart is initialized");
     }
 
+    @Test
+    public void createAnItem_doesPriceExist() {
+        //SETUP
+        Item item = new Item();
+
+        //EXECUTION
+        boolean actual = item.price instanceof double;
+
+        //ASSERT
+        assertTrue(actual, "field of price for item exists");
+    }
 }
