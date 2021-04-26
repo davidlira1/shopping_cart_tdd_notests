@@ -28,4 +28,16 @@ public class Cart {
         return shoppingCart.size();
     }
 
+    public ArrayList<Item> onSaleItems() {
+        ArrayList<Item> itemsOnSale = new ArrayList<Item>();
+
+        for(int i = 0; i < shoppingCart.size(); i++) {
+            if(shoppingCart.get(i).sale == true) {
+                itemsOnSale.add(shoppingCart.get(i));
+            }
+        }
+
+        return itemsOnSale;
+    }
+
 }

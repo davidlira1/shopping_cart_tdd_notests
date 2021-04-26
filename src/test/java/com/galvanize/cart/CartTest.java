@@ -2,6 +2,7 @@ package com.galvanize.cart;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,31 +11,31 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CartTest {
 
-//    @Test
-//    public void createAShoppingCart_doesShoppingCartExist() {
-//        //SETUP
-//        Cart cart = new Cart();
-//        ArrayList<Item> expected = new ArrayList<Item>();
-//
-//        //EXECUTION
-//        ArrayList<Item> actual = cart.shoppingCart;
-//
-//        //ASSERT
-//        assertEquals(actual, expected, "shopping cart exist");
-//    }
-//
-//    @Test
-//    public void createAShoppingCart_initializedEmpty () {
-//        //SETUP
-//        Cart cart = new Cart();
-//        int expected = 0;
-//
-//        //EXECUTION
-//        int actual = cart.shoppingCart.size();
-//
-//        //ASSERT
-//        assertEquals(expected, actual, "Expect cart to be empty when cart is initialized");
-//    }
+    @Test
+    public void createAShoppingCart_doesShoppingCartExist() {
+        //SETUP
+        Cart cart = new Cart();
+        ArrayList<Item> expected = new ArrayList<Item>();
+
+        //EXECUTION
+        ArrayList<Item> actual = cart.shoppingCart;
+
+        //ASSERT
+        assertEquals(actual, expected, "shopping cart exist");
+    }
+
+    @Test
+    public void createAShoppingCart_initializedEmpty () {
+        //SETUP
+        Cart cart = new Cart();
+        int expected = 0;
+
+        //EXECUTION
+        int actual = cart.shoppingCart.size();
+
+        //ASSERT
+        assertEquals(expected, actual, "Expect cart to be empty when cart is initialized");
+    }
 
 //    @Test
 //    public void createAnItem_doesPriceExist() {
@@ -51,7 +52,7 @@ public class CartTest {
     @Test
     public void createAnItem_initializedWithName() {
         //SETUP
-        Item item = new Item("oranges", 5.25);
+        Item item = new Item("oranges", 5.25, false);
         String expected = "oranges";
 
         //EXECUTION
@@ -65,7 +66,7 @@ public class CartTest {
     @Test
     public void createAnItem_initializedWithPrice() {
         //SETUP
-        Item item = new Item("oranges", 5.25);
+        Item item = new Item("oranges", 5.25, false);
         double expected = 5.25;
 
         //EXECUTION
@@ -92,7 +93,7 @@ public class CartTest {
     public void createGetTotalPrice() {
         //SETUP
         Cart cart = new Cart();
-        Item item = new Item("oranges",5.25);
+        Item item = new Item("oranges",5.25, false);
         cart.shoppingCart.add(item);
         String expected = "5.25 1";
 
@@ -108,7 +109,7 @@ public class CartTest {
     public void itemizedList() {
         //SETUP
         Cart cart = new Cart();
-        Item item = new Item("oranges",3.75);
+        Item item = new Item("oranges",3.75, false);
         cart.shoppingCart.add(item);
         ArrayList<Item> expected = new ArrayList<Item>();
         expected.add(item);
@@ -124,13 +125,15 @@ public class CartTest {
     public void getTotalPrice_multipleItems() {
         //SETUP
         Cart cart = new Cart();
-        Item item1 = new Item("oranges", 3.25);
-        Item item2 = new Item("apples", 6.24);
+        Item item1 = new Item("oranges", 3.25, false);
+        Item item2 = new Item("apples", 6.24, false);
         cart.shoppingCart.add(item1);
         cart.shoppingCart.add(item2);
-        String totalPrice = "9.49";
+        DecimalFormat df = new DecimalFormat("#.00");
+        String totalPrice = String.format("%f", item1.getPrice() + item2.getPrice());
         String quantity = "2";
         String expected = totalPrice + " " + quantity;
+
 
         //EXECUTION
         String actual = cart.getTotalPrice();
@@ -156,8 +159,8 @@ public class CartTest {
     public void itemQuantities_multipleItems() {
         //setup
         Cart cart = new Cart();
-        Item item1 = new Item("oranges", 3.25);
-        Item item2 = new Item("apples", 6.24);
+        Item item1 = new Item("oranges", 3.25, false);
+        Item item2 = new Item("apples", 6.24, false);
         cart.shoppingCart.add(item1);
         cart.shoppingCart.add(item2);
         int expected = 2;
@@ -170,7 +173,7 @@ public class CartTest {
     }
 
     @Test
-    public void onSaleItems_noItems() {
+    public void onSaleItems_noSaleItems() {
         //setup
         Cart cart = new Cart();
         Item item1 = new Item("oranges", 3.25, false);
@@ -180,12 +183,28 @@ public class CartTest {
         int expected = 0;
 
         //execution
-        int actual = cart.onSaleItems();
+        int actual = cart.onSaleItems().size();
 
         //assert
         assertEquals(expected, actual, "Expect number of sale items to be zero when there are no sale items");
     }
 
+    @Test
+    public void onSaleItems_multipleSaleItems() {
+        //setup
+        Cart cart = new Cart();
+        Item item1 = new Item("oranges", 3.25, true);
+        Item item2 = new Item("apples", 6.24, true);
+        cart.shoppingCart.add(item1);
+        cart.shoppingCart.add(item2);
+        int expected = 2;
+
+        //execution
+        int actual = cart.onSaleItems().size();
+
+        //assert
+        assertEquals(expected, actual, "Expect number to reflect number of items on sale");
+    }
 
 
 }
