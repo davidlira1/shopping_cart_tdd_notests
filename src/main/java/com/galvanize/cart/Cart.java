@@ -10,14 +10,14 @@ public class Cart {
         shoppingCart = new ArrayList<Item>();
     }
 
-    public double getTotalPrice() {
+    public String getTotalPrice() {
         double totalPrice = 0;
 
         for (int i = 0; i < shoppingCart.size(); i++) {
             totalPrice += shoppingCart.get(i).price;
         }
 
-        return totalPrice;
+        return totalPrice + " " + shoppingCart.size();
     }
 
     public ArrayList<Item> itemizedList() {

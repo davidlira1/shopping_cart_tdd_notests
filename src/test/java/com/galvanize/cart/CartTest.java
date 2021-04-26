@@ -79,10 +79,10 @@ public class CartTest {
     public void getTotalPrice_noItems() {
         //SETUP
         Cart cart = new Cart();
-        double expected = 0;
+        String expected = "0 0";
 
         //EXECUTION
-        double actual = cart.getTotalPrice();
+        String actual = cart.getTotalPrice();
 
         //ASSERT
         assertEquals(expected, actual, "Expect total price to be 0 when there are no items in shopping cart.");
@@ -94,10 +94,10 @@ public class CartTest {
         Cart cart = new Cart();
         Item item = new Item("oranges",5.25);
         cart.shoppingCart.add(item);
-        double expected = 5.25;
+        String expected = "5.25 1";
 
         //EXECUTION
-        double actual = cart.getTotalPrice();
+        String actual = cart.getTotalPrice();
 
         //ASSERT
         assertEquals(expected, actual, "Grabs total price of items in cart");
@@ -137,7 +137,19 @@ public class CartTest {
 
         //ASSERT
         assertEquals(expected, actual, "GetTotalPrice reflects both item price and quantity");
+    }
 
+    @Test
+    public void itemQuantities_noItems() {
+        //setup
+        Cart cart = new Cart();
+        int expected = 0;
+
+        //execution
+        int actual = cart.itemQuantities();
+
+        //assert
+        assertEquals(expected, actual, "itemQuantities() returns 0 when there are not items in shopping cart");
     }
 
 
